@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import custom CSS dengan path yang benar */
+@import "base.css";
+@import "components.css";
+@import "utilities.css";
+@import "animations.css";
+
+/* Pastikan urutan layer benar */
+@layer base {
+  html {
+    @apply scroll-smooth;
+    scroll-padding-top: 80px; /* Sesuaikan dengan tinggi navbar */
+  }
+
+  body {
+    @apply text-slate-600 dark:text-slate-300;
+  }
+}
+
+@layer components {
+  .hamburger-line {
+    @apply w-[30px] h-[2px] my-2 block bg-gray-300;
+  }
+
+  .nav-link {
+    @apply relative text-base text-slate-700 py-2 mx-8 flex 
+           group-hover:text-teal-500 dark:text-white 
+           transition-colors duration-300 cursor-pointer;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 
+           bg-teal-500 transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .nav-link.active {
+    @apply text-teal-500;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-accent-blue text-white hover:bg-accent-blue/90 hover:shadow-lg;
+  }
+
+  .card {
+    @apply bg-white dark:bg-slate-700 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 
+    focus:outline-none focus:ring-2 focus:ring-accent-blue dark:text-white;
+  }
+
+  .social-link {
+    @apply w-10 h-10 rounded-full flex items-center justify-center border-2 border-slate-300 
+    hover:border-accent-blue hover:bg-accent-blue hover:text-white text-slate-300 
+    transition-all duration-300;
+  }
+
+  .section-padding {
+    @apply pt-24 pb-16 md:pt-32 md:pb-24; /* Padding yang konsisten untuk semua section */
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.5s ease-in-out;
+}
+
+/* Effects */
+.text-glow {
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF;
+}
+
+.button-glow:hover {
+    box-shadow: 0 0 10px #8A2BE2, 0 0 20px #8A2BE2;
+}
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-20; /* Reduced padding */
+  }
+  
+  /* Form styling */
+  .form-input {
+    @apply w-full px-4 py-2 rounded-lg border border-slate-300 
+           focus:ring-2 focus:ring-teal-500 focus:border-teal-500 
+           dark:bg-slate-700 dark:border-slate-600 dark:text-white;
+  }
+}
